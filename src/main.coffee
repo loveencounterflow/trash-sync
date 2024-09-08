@@ -5,6 +5,7 @@
 #===========================================================================================================
 { spawnSync,  }           = require 'node:child_process'
 { lstatSync,  }           = require 'node:fs'
+{ resolve,    }           = require 'node:path'
 { log, error, }           = console
 { rpr, }                  = require './inspect'
 runs_as_cli               = module is require.main
@@ -23,7 +24,6 @@ exists = ( path ) ->
 @trash = ( path ) ->
   return 0 unless exists path
   path_rpr  = rpr path
-  # js_source = "import trash from 'trash';console.log('Ω___1',process.env);await trash(process.env.path)"
   js_source = "import trash from 'trash';await trash(process.env.path)"
   cwd       = resolve __dirname, '..'
   cfg       = { encoding: 'utf-8', env: { path, }, cwd, }
@@ -51,5 +51,4 @@ if runs_as_cli then await do =>
     log "provide a path to a file system object you want to move to the trash"
     process.exit 111
   log "trash #{path}", await @trash path
-  # log "trash #{path}", await @foo path
 
