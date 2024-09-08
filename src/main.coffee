@@ -23,10 +23,13 @@ exists = ( path ) ->
 @trash = ( path ) ->
   return 0 unless exists path
   path_rpr  = rpr path
-  js_source = "import trash from 'trash';await trash(#{path_rpr})"
+  # js_source = "import trash from 'trash';console.log('Ω___1',process.env);await trash(process.env.path)"
+  js_source = "import trash from 'trash';await trash(process.env.path)"
+  cwd       = resolve __dirname, '..'
+  cfg       = { encoding: 'utf-8', env: { path, }, cwd, }
   { stdout
     stderr
-    status } = spawnSync process.execPath, [ '-e', js_source, ], { encoding: 'utf-8', }
+    status } = spawnSync process.execPath, [ '-e', js_source, ], cfg
   #.........................................................................................................
   unless status is 0
     throw new Error stderr unless runs_as_cli
