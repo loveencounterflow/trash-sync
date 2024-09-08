@@ -41,10 +41,12 @@ exists = ( path ) ->
   return 1 unless exists path
   return 0
 
+
 #===========================================================================================================
-if runs_as_cli then do =>
+if runs_as_cli then await do =>
   unless ( path = process.argv[ 2 ] )?
     log "provide a path to a file system object you want to move to the trash"
     process.exit 111
-  log "trash #{path}", @trash path
+  log "trash #{path}", await @trash path
+  # log "trash #{path}", await @foo path
 
