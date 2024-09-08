@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Trash-Sync](#trash-sync)
+  - [To Do](#to-do)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 A tiny NodeJS CJS module to trash files and directories synchronously
 
@@ -21,3 +30,9 @@ Example:
 { trash, } = require( 'trash-sync' );
 console.log( "trashed ", trash( 'path/to/file' ), " file(s)." );
 ```
+
+## To Do
+
+* **[–]** make `trash` `import`able through submodule
+* **[–]** `cd` to correct directory before `spawnSync()`
+
